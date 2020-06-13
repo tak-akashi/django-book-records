@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table mt-3">
+  <thead>
+    <tr class="thead-dark">
+      <th scope="col">#</th>
+      <th scope="col">ジャンル名</th>
+      <th scope="col">備考</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+  {% for genre in genre_list  %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{% url 'records:genre_update' genre.pk %}">{{ genre.name }}</a></td>
+      <td>{{ genre.description }}</td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+<a class="btn btn-primary" href="{% url 'records:genre_create' %}">追加</a>
+  
+{% endblock content %}
+
+
+  

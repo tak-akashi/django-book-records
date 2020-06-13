@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load mytag %}
+
+
+<table class="table table-striped mt-3">
+  <thead>
+    <tr class="thead-dark text-center">
+      <th class="align-middle" scope="col">#</th>
+      <th class="align-middle" scope="col">タイトル</th>
+      <th class="align-middle" scope="col">ジャンル</th>
+      <th class="align-middle" scope="col">著者名</th>
+      <th class="align-middle" scope="col">おすすめ度</th>
+      <th class="align-middle" scope="col">読了日</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+  {% for book in book_list  %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{% url 'records:update' book.pk %}">{{ book.title }}</a></td>
+      <td>{% if book.genre is None %} {% else %}{{ book.genre }}{% endif %}</td>
+      <td>{% if book.author is None %} {% else %}{{ book.author }}{% endif %}</td>
+      <td>
+        {% for _i in book.recommended|times %}
+            <img src="{% static 'star.png' %}" alt="">
+        {% endfor %}
+      </td>
+      <td>{% if book.date is None %} {% else %}{{ book.date }}{% endif %}</td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+{% include 'records/pagination.html' %}
+
+{% endblock content %}
+</ul>
+
+  

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron mt-5">
+  <form method="post">
+    {% csrf_token %}
+    <h5>本当に<strong>{{ object }}</strong>を削除してもよろしいですか？</h5>
+    <input type="submit" class="btn btn-danger" value="削除する">
+    <a class="btn btn-success" href="{% url 'records:genre_list' %}">キャンセル</a>
+  </form>
+</div>
+{% endblock content %}

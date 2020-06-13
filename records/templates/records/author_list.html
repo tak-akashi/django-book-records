@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table mt-3">
+  <thead>
+    <tr class="thead-dark">
+      <th scope="col">#</th>
+      <th scope="col">著者名</th>
+      <th scope="col">備考</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+  {% for author in author_list  %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{% url 'records:author_update' author.pk %}">{{ author.name }}</a></td>
+      <td>{{ author.description }}</td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+
+<a class="btn btn-primary" href="{% url 'records:author_create' %}">追加</a>
+  
+{% endblock content %}
+
+
+  
